@@ -2,19 +2,7 @@
   "name": "design-imaging",
   "version": "0.1.0",
   "private": true,
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "server/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kylebaugh/design-imaging.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kylebaugh/design-imaging/issues"
-  },
-  "homepage": "https://github.com/kylebaugh/design-imaging#readme",
+  "proxy": "http://localhost:4567",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -28,6 +16,7 @@
     "pg-hstore": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "sequelize": "^6.28.0",

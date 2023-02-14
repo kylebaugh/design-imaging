@@ -27,4 +27,16 @@ module.exports = {
         })
     }, 
     
+    getProducts: (req, res) => {
+        sequelize.query(`
+            SELECT * FROM products;
+        `)
+        .then((dbRes) => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(400).send(err)
+        })
+    }, 
 }

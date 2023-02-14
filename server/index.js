@@ -9,8 +9,9 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const {getCustomers} = require('./controller')
+const {getCustomers, getProducts} = require('./controller')
 
 app.get('/customers', getCustomers)
+app.get('/products', getProducts)
 
 app.listen(SERVER_PORT, () => console.log(`Avengers assemble on port ${SERVER_PORT}`))
