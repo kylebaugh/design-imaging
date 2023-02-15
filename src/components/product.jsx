@@ -10,7 +10,12 @@ const Product = (props) => {
 
     const product = props.product
 
-    console.log(product)
+    const addToCart = (obj) => {
+        axios.post('/addToCart', obj)
+            .then((res) => {
+                console.log(res.data)
+            })
+    }
 
     return (
         <div className='productCard'>
@@ -19,7 +24,7 @@ const Product = (props) => {
                 <h2>{`${product.name}`}</h2>
                 <h2>{`${product.description}`}</h2>
             </section>
-            <button>Add to Cart</button>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
         </div>
     )
 }

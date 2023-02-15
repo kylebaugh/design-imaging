@@ -13,6 +13,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     }
 })
 
+
 module.exports = {
     getCustomers: (req, res) => {
         sequelize.query(`
@@ -39,4 +40,21 @@ module.exports = {
             res.status(400).send(err)
         })
     }, 
+
+    addToCart: (req, res) => {
+
+        let newItem = {...req.body}
+
+        newItem.quantity = 1
+
+        req.session.cart ? req.session.cart.push(newItem) : req.session.cart = [newItem]
+
+        console.log(req.session.cart)
+        
+        res.sendStatus(200)
+    },
+
+    viewCart: (req, res) => {
+        res.status(200).send(req.session.cart)
+    }
 }
