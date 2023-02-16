@@ -16,6 +16,7 @@ const cartCard = (props) => {
             <section>
                 <h2>{`${product.name}`}</h2>
                 <h2>{`${product.description}`}</h2>
+                <h4> Quantity: {`${product.quantity}`}</h4>
 
             </section>
         </div>

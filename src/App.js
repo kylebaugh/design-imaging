@@ -8,6 +8,7 @@ function App() {
     <div>
       <header>
         <h2>This is my header</h2>
+        <NavLink to='/'>Home</NavLink>
         <NavLink to='/cart'>CART</NavLink>
       </header>
     <Routes>

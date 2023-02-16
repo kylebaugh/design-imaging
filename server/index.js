@@ -17,11 +17,13 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))
 
-const {getCustomers, getProducts, addToCart, viewCart} = require('./controller')
+const {getCustomers, getProducts, addToCart, viewCart, addNewProduct, submitOrder} = require('./controller')
 
 app.get('/customers', getCustomers)
 app.get('/products', getProducts)
+app.post('/newProd', addNewProduct)
 app.post('/addToCart', addToCart)
 app.get('/viewCart', viewCart)
+app.get('/submitOrder/:id', submitOrder)
 
 app.listen(SERVER_PORT, () => console.log(`Avengers assemble on port ${SERVER_PORT}`))
