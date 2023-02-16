@@ -1,12 +1,6 @@
 import axios from 'axios'
 
-import { useState, useContext } from 'react'
-
 const Product = (props) => {
-
-    // const [itemName, setItemName] = useState('')
-    // const [itemDescription, setItemDescription] = useState('')
-    // const [itemPicture, setItemPicture] = useState('')
 
     const product = props.product
 

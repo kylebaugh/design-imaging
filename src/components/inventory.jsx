@@ -15,8 +15,8 @@ const Inventory = () => {
 
         axios.get(`/products`)
             .then((res) => {
-                // map over res
-                console.log(res.data)
+                // map over response
+                // console.log(res.data)
                 setProducts(res.data)
             })
             .catch((err) => {

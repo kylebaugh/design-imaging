@@ -18,7 +18,6 @@ const Cart = () => {
     }
 
     const submitOrder = () => {
-        // console.log(customer)
         axios.get(`/submitOrder/${customer}`)
             .then((res) => {
                 console.log(res.data)
@@ -60,8 +59,8 @@ const Cart = () => {
             </section>}
 
             {!cart && <section>
-                    Add items from the Home page to see them in your cart!
-                </section>}
+                        Add items from the Home page to see them in your cart!
+                    </section>}
         </div>
     )
 }

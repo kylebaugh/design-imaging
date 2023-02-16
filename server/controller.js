@@ -31,44 +31,40 @@ module.exports = {
     getProducts: (req, res) => {
         sequelize.query(`
             SELECT * FROM products
-            ORDER BY product_id;
-        `)
-        .then((dbRes) => {
-            res.status(200).send(dbRes[0])
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(400).send(err)
-        })
+            ORDER BY product_id;`)
+                .then((dbRes) => {
+                    res.status(200).send(dbRes[0])
+                })
+                .catch((err) => {
+                    console.log(err)
+                    res.status(400).send(err)
+                })
     }, 
 
     addNewProduct: (req, res) => {
         console.log(req.body)
 
         sequelize.query(`
-        INSERT INTO products
-        (name, description, image_url)
-        VALUES
-        ('${req.body.name}', '${req.body.description}', '${req.body.image_url}')
-        RETURNING *;
-        `)
-            .then((dbRes) => {
-                res.status(200).send(dbRes[0])
-            })
-            .catch((err) => {
-                console.log(err)
-                res.status(400).send(err)
-            })
+            INSERT INTO products
+            (name, description, image_url)
+            VALUES
+            ('${req.body.name}', '${req.body.description}', '${req.body.image_url}')
+            RETURNING *;`)
+                .then((dbRes) => {
+                    res.status(200).send(dbRes[0])
+                })
+                .catch((err) => {
+                    console.log(err)
+                    res.status(400).send(err)
+                })
     }, 
 
     addToCart: (req, res) => {
 
         let id = req.body.product_id
 
-        console.log(req.body)
-        console.log(id)
-
-        // req.session.cart ? req.session.cart.push(newItem) : req.session.cart = [newItem]
+        // console.log(req.body)
+        // console.log(id)
 
         let newItem = {...req.body}
         
@@ -85,9 +81,7 @@ module.exports = {
             req.session.cart = [newItem]
         }
 
-
-
-        console.log(req.session.cart)
+        // console.log(req.session.cart)
         
         res.sendStatus(200)
     },
@@ -100,29 +94,29 @@ module.exports = {
         const {id} = req.params
 
         sequelize.query(`
-        INSERT INTO orders
-        (customer_id)
-        VALUES
-        (${id})
-        RETURNING *;`)
-            .then(dbRes => {
-                console.log(dbRes[0])
+            INSERT INTO orders
+            (customer_id)
+            VALUES
+            (${id})
+            RETURNING *;`)
+                .then(dbRes => {
+                    console.log(dbRes[0])
 
-                let fullCart = [...req.session.cart]
+                    let fullCart = [...req.session.cart]
 
-                fullCart.forEach(el => {
-                    sequelize.query(`
-                        INSERT INTO order_products
-                        (order_id, product_id, quantity)
-                        VALUES
-                        (${dbRes[0][0].order_id}, ${el.product_id}, ${el.quantity});    
-                    `).then(dbRes2 => {
-                        console.log(dbRes2[0])
-                        req.session.cart = ''
-                        return res.sendStatus(200)
+                    fullCart.forEach(el => {
+                        sequelize.query(`
+                            INSERT INTO order_products
+                            (order_id, product_id, quantity)
+                            VALUES
+                            (${dbRes[0][0].order_id}, ${el.product_id}, ${el.quantity});`)
+                                .then(dbRes2 => {
+                                console.log(dbRes2[0])
+                                req.session.cart = ''
+                                return res.sendStatus(200)
+                            })
                     })
                 })
-            })
 
     }
 }
