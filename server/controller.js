@@ -113,7 +113,8 @@ module.exports = {
                                 .then(dbRes2 => {
                                 console.log(dbRes2[0])
                                 req.session.cart = ''
-                                return res.sendStatus(200)
+                                res.sendStatus(200)
+                                return
                             })
                     })
                 })
