@@ -14,6 +14,7 @@ const Product = (props) => {
         axios.post('/addToCart', obj)
             .then((res) => {
                 console.log(res.data)
+                alert(`${obj.name} has been added to cart!`)
             })
     }
 

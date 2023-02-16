@@ -5,11 +5,13 @@ import Cart from './components/cart'
 
 function App() {
   return (
-    <div>
+    <div id='main'>
       <header>
-        <h2>This is my header</h2>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/cart'>CART</NavLink>
+        <h2>Welcome!</h2>
+        <section id='nav'>
+          <NavLink to='/'>Home</NavLink>
+          <NavLink to='/cart'>Cart</NavLink>
+        </section>
       </header>
     <Routes>
       <Route index element={<Inventory/>}/>

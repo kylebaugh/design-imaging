@@ -61,3 +61,8 @@ VALUES
 SELECT * FROM order_products
 JOIN products ON order_products.order_product_id = products.product_id
 WHERE order_id = 2;
+
+SELECT * FROM order_products
+JOIN products 
+ON products.product_id = order_products.product_id
+WHERE order_id = 8;

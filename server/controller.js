@@ -118,6 +118,8 @@ module.exports = {
                         (${dbRes[0][0].order_id}, ${el.product_id}, ${el.quantity});    
                     `).then(dbRes2 => {
                         console.log(dbRes2[0])
+                        req.session.cart = ''
+                        return res.sendStatus(200)
                     })
                 })
             })

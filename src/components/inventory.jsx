@@ -48,26 +48,28 @@ const Inventory = () => {
 
 
     return (
-        <div>
+        <div id='inventory'>
             <h1>Inventory Page</h1>
 
-            <section>
+            <section id='addForm'>
                 <input placeholder='Product Name' id='name' value={newProdName} onChange={(e) => setNewProdName(e.target.value)}/>
                 <input placeholder='Product Description' id='description' value={newProdDesc} onChange={(e) => setNewProdDesc(e.target.value)}/>
                 <input placeholder='Product Image URL' id='picURL' value={newProdImage} onChange={(e) => setNewProdImage(e.target.value)}/>
                 <button onClick={() => addNewProduct()}>Add New Product</button>
             </section>
 
-            {products.map((product) => {
-                let id = product.product_id
-
-                return (
-                    <Product
+            <section className='products'>
+                {products.map((product) => {
+                    let id = product.product_id
+                    
+                    return (
+                        <Product
                         key={id}
                         product={product}
-                    />
-                )
-            })}
+                        />
+                        )
+                    })}
+            </section>
         </div>
     )
 }

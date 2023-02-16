@@ -22,27 +22,30 @@ const Cart = () => {
         axios.get(`/submitOrder/${customer}`)
             .then((res) => {
                 console.log(res.data)
+                alert('Order has been processed!')
             })
     }
 
     useEffect(() => {
         viewCart()
-    }, [])
+    }, [submitOrder])
 
     return (
-        <div>
+        <div id='cart'>
             <h1>My Cart</h1>
 
-            <select value={customer} onChange={(e) => setCustomer(e.target.value)}>
-                <option value='0'>Default...</option>
-                <option value='1'>Lowes</option>
-                <option value='2'>Home Depot</option>
-                <option value='3'>Kyle</option>
-            </select>
+            <section id='submitForm'>
+                <select value={customer} onChange={(e) => setCustomer(e.target.value)}>
+                    <option value='0'>Select Customer</option>
+                    <option value='1'>Lowes</option>
+                    <option value='2'>Home Depot</option>
+                    <option value='3'>Kyle</option>
+                </select>
+                <button onClick={() => submitOrder()}>Submit </button>
+            </section>
 
-            <button onClick={() => submitOrder()}>Submit </button>
 
-            {cart && <div>
+            {cart && <section className='products'>
                 
                 {cart.map((product) => {
                     let id = product.product_id
@@ -54,7 +57,11 @@ const Cart = () => {
                         />
                         )
                 })}
-            </div>}
+            </section>}
+
+            {!cart && <section>
+                    Add items from the Home page to see them in your cart!
+                </section>}
         </div>
     )
 }
